@@ -12,17 +12,24 @@
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRC =
+SRC = /src/game.c
 
 NAME = so_long
 LIB = so_long.a
 OBJ = $(SRC:.c=.o)
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Darwin)
+    MACOS_FLAGS = -framework OpenGL -framework AppKit
+else
+    MACOS_FLAGS =
+endif
 
 all: $(LIB)
 	cd mlx && make
 	cd get_next_line && make
 	cd printf && make
-	@$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lmlx -lmlx $(MACOS_FLAGS) -o $(NAME)
 
 $(LIB): $(OBJ)
 	@ar -rcs $(LIB) $(OBJ)
@@ -37,3 +44,6 @@ fclean: clean
 	make -C mlx clean
 	make -C get_next_line fclean
 	make -C printf fclean
+
+
+
