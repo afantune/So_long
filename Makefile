@@ -12,7 +12,7 @@
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRC = /src/game.c
+SRC = src/game.c src/utilities.c src/maprules.c src/map_loader.c src/errors.c src/frees.c src/position.c
 
 NAME = so_long
 LIB = so_long.a
@@ -26,7 +26,7 @@ else
 endif
 
 all: $(LIB)
-	cd mlx && make
+	cd minilibx-linux && make 
 	cd get_next_line && make
 	cd printf && make
 	$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lmlx -lmlx $(MACOS_FLAGS) -o $(NAME)
@@ -41,7 +41,7 @@ re: fclean all
 
 fclean: clean
 	rm -f $(NAME) $(LIB)
-	make -C mlx clean
+	make -C minilibx-linux clean
 	make -C get_next_line fclean
 	make -C printf fclean
 

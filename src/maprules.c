@@ -81,42 +81,60 @@ int	set_r_c(int *rc, char *path)
 	return (1);
 }
 
-int	*fill_row(int *row, int fd, int n)
+
+int *fill_row(int fd, int n)
 {
-	char	*temp;
-	int		i;
+    char *temp;
+    int *row;
+    int i;
 
-	i = 0;
-	temp = get_next_line(fd);
-	while (i < n)
-	{
-		row[i] = temp[i] - 48;
-		i++;
-	}
-	free(temp);
-	return (row);
-}
-
-int	**map_create(int *rc, int **map, char *path)
-{
-	int	i;
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	i = 0;
-	map = malloc(sizeof(int *) * rc[0]);
-    if (!map)
+    row = malloc(sizeof(int) * n);
+    if (!row)
     {
-        printf("Memory allocation failed for matrix.\n");
+        perror("Error allocating memory for row");
         return (NULL);
     }
 
-	while (i < rc[0])
-	{
-		map[i] = malloc(sizeof(int) * rc[1]);
-		map[i] = fill_row(map[i], fd, rc[1]);
-		i++;
-	}
-	close (fd);
-	return (map);
+    temp = get_next_line(fd);
+    if (!temp)
+    {
+        free(row);
+        return (NULL);
+    }
+	i = 0;
+    while (i < n)
+    {
+        row[i] = temp[i] - '0';
+		i ++;
+    }
+    free(temp);
+    return (row);
+}
+
+
+int **map_create(int *rc, int **map, char *path)
+{
+    int i;
+    int fd;
+
+    fd = open(path, O_RDONLY);
+    i = 0;
+    map = malloc(sizeof(int *) * rc[0]);
+    if (!map)
+    {
+        perror("Error allocating memory for map");
+        return (NULL);
+    }
+    while (i < rc[0])
+    {
+        map[i] = fill_row(fd, rc[1]);
+        if (!map[i])
+        {
+			return (NULL);
+        }
+        i++;
+    }
+
+    close(fd);
+    return (map);
 }
