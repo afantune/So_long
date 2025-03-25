@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:48:03 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:57:45 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:11:42 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	can_move(t_player *p1, t_vars *vars, int new_x, int new_y)
 	{
 		vars->end = 1;
 	}
-	ft_printf("%d\n", ++vars->p1->move_count);
+	ft_printf("%d\n", ++vars->player->move_count);
 	return (1);
 }
 
@@ -67,6 +67,6 @@ void	update_pos(int keycode, t_player *p1, t_vars *vars)
 		p1->move = 1;
 		ft_printf("Moves: %d\n", ++p1->move_count);
 		mlx_clear_window(vars->mlx, vars->win);
-        render_map(vars);
+		render_map(vars);
 	}
 }

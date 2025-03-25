@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:08 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:43:52 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:11:08 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,23 @@ void	game_checks(t_vars *vars)
 	{
 		vars->exit->exit = 1;
 	}
-	if (vars->p1->x == vars->exit->x && vars->p1->y == vars->exit->y && vars->exit->exit == 1)
-    {
-        printf("You Win!\n");
-        exit(0);
-    }
+	if (vars->player->x == vars->exit->x && vars->player->y == vars->exit->y
+		&& vars->exit->exit == 1)
+	{
+		printf("You Win!\n");
+		exit(0);
+	}
 }
 
 void	validate_path(t_map *map, int i, int j, int *path)
 {
 	if (i < 0 || j < 0 || i >= map->rc[0] || j >= map->rc[1]
 		|| map->map[i][j] == 1)
-		return;
+		return ;
 	if (map->map[i][j] == E)
 	{
 		path[0] = 1;
-		return;
+		return ;
 	}
 	map->map[i][j] = 1;
 	validate_path(map, i - 1, j, path);

@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:45 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:48:15 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:56:57 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	events(int keycode, t_vars *vars)
 	if (keycode == 53)
 		quit(vars);
 	if (keycode == W || keycode == A || keycode == S || keycode == D)
-		update_pos(keycode, vars->p1, vars);
+		update_pos(keycode, vars->player, vars);
 	return (0);
 }
 
@@ -37,12 +37,13 @@ int	callbacks(t_vars *vars)
 		vars->exit->active = vars->exit->disabled;
 	else
 		vars->exit->active = vars->exit->enabled;
-	if (vars->p1->move == 0)
-		vars->p1->active = vars->p1->idle;
+	if (vars->player->move == 0)
+		vars->player->active = vars->player->idle;
 	else
-		vars->p1->active = vars->p1->run;
+		vars->player->active = vars->player->running;
 	d_anim_helper(vars, vars->exit->active->img, vars->exit->x, vars->exit->y);
-	d_anim_helper(vars, vars->p1->active->img, vars->p1->x, vars->p1->y);
+	d_anim_helper(vars, vars->player->active->img, vars->player->x,
+		vars->player->y);
 	mlx_do_sync(vars->mlx);
 	if (vars->end == 1)
 		quit(vars);
@@ -52,11 +53,11 @@ int	callbacks(t_vars *vars)
 int	on_release(int keycode, t_vars *vars)
 {
 	if (keycode == W || keycode == A || keycode == S || keycode == D)
-		vars->p1->move = 0;
+		vars->player->move = 0;
 	return (0);
 }
 
-int	start_game (int **map, int *rc)
+int	start_game(int **map, int *rc)
 {
 	t_vars	*vars;
 
@@ -72,7 +73,7 @@ int	start_game (int **map, int *rc)
 	vars->map->map = map;
 	vars->map->rc = rc;
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "HELLO");
+	vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "so_long");
 	nullifier(vars);
 	loadplayers(vars);
 	mlx_loop_hook(vars->mlx, callbacks, vars);

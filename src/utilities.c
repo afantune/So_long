@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afantune <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:09:15 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:09:16 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:10:05 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	nullifier(t_vars *vars)
 {
 	vars->wall = NULL;
 	vars->base = NULL;
-	vars->p1 = NULL;
+	vars->player = NULL;
 	vars->exit = NULL;
 	vars->food = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   displays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afantune <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:09:23 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:09:24 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:12:51 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	base_rend(t_vars *vars)
 	{
 		while (j < vars->map->rc[1])
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->base->img,
-				j * vars->wall->w, i * vars->wall->h);
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->base->img, j
+				* vars->wall->width, i * vars->wall->height);
 			j++;
 		}
 		j = 0;
