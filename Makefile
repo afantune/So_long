@@ -29,7 +29,7 @@ all: $(LIB)
 	cd minilibx-linux && make 
 	cd get_next_line && make
 	cd printf && make
-	$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lmlx -lmlx $(MACOS_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lminilibx-linux -lmlx $(MACOS_FLAGS) -o $(NAME)
 
 $(LIB): $(OBJ)
 	@ar -rcs $(LIB) $(OBJ)

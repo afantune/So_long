@@ -125,5 +125,11 @@ void		game_checks(t_vars *vars);
 t_movement	get_movement_direction(int keycode);
 int			can_move(t_player *p1, t_vars *vars, int new_x, int new_y);
 void		update_pos(int keycode, t_player *p1, t_vars *vars);
+int			check_path(int **map, char *path, int *start, int *rc);
+void		main_display(t_vars *vars);
+void		malloc_errors(t_vars *vars, int **map, int *rc);
+void		d_anim_helper(t_vars *vars, void *img, int x, int y);
+int			loadplayers(t_vars *vars);
+int			start_game(int **map, int *rc);
 
 #endif

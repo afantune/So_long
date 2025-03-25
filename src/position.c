@@ -66,5 +66,7 @@ void	update_pos(int keycode, t_player *p1, t_vars *vars)
 		p1->y = new_y;
 		p1->move = 1;
 		ft_printf("Moves: %d\n", ++p1->move_count);
+		mlx_clear_window(vars->mlx, vars->win);
+        render_map(vars);
 	}
 }
