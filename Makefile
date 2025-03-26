@@ -6,13 +6,13 @@
 #    By: afantune <afantune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/05 13:42:55 by afantune          #+#    #+#              #
-#    Updated: 2025/03/25 13:57:45 by afantune         ###   ########.fr        #
+#    Updated: 2025/03/26 13:02:27 by afantune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRC = src/checks.c src/displays.c src/errors.c src/frees.c src/game.c src/map_loader.c src/map.c src/maprules.c \
+SRC = src/checks.c src/displays.c src/errors.c src/frees.c src/game.c src/map_loader.c src/maprules.c \
 src/player.c src/position.c src/utilities.c src/food.c src/exit.c src/wall.c src/listmanager.c src/loading.c
 
 NAME = so_long

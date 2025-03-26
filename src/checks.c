@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:08 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/25 12:11:08 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:20:27 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	game_checks(t_vars *vars)
 	{
 		while (j < vars->map->rc[1])
 		{
-			if (vars->map->map[i][j] == 'C')
+			if (vars->map->map[i][j] == C)
 				c++;
 			j++;
 		}

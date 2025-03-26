@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:09:37 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/25 15:13:17 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:39:55 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../get_next_line/get_next_line.h"
 # include "../printf/ft_printf.h"
 
-# define SPEED 15
+# define SPEED 5
 # define W 119
 # define A 97
 # define S 115
