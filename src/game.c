@@ -21,11 +21,17 @@ int	quit(t_vars *vars)
 
 int	events(int keycode, t_vars *vars)
 {
-	if (keycode == 53)
-		quit(vars);
-	if (keycode == W || keycode == A || keycode == S || keycode == D)
-		update_pos(keycode, vars->player, vars);
-	return (0);
+    if (keycode == ESC)
+        quit(vars);
+    if (keycode == W || keycode == UP)
+        update_pos(W, vars->player, vars);
+    else if (keycode == S || keycode == DOWN)
+        update_pos(S, vars->player, vars);
+    else if (keycode == A || keycode == LEFT)
+        update_pos(A, vars->player, vars);
+    else if (keycode == D || keycode == RIGHT)
+        update_pos(D, vars->player, vars);
+    return (0);
 }
 
 int	callbacks(t_vars *vars)

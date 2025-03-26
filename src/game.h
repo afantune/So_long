@@ -23,11 +23,16 @@
 # include "../get_next_line/get_next_line.h"
 # include "../printf/ft_printf.h"
 
-# define SPEED	15
-# define W	13
-# define A	0
-# define S	1
-# define D	2
+# define SPEED 15
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
+# define ESC 65307
 # define P 32
 # define C 19
 # define E 21
