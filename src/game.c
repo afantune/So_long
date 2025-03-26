@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:45 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/26 13:42:17 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:58:56 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	start_game(int **map, int *rc)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "so_long");
 	nullifier(vars);
-	loadplayers(vars);
 	mlx_loop_hook(vars->mlx, callbacks, vars);
+	loadplayers(vars);
 	mlx_hook(vars->win, 2, 1L<<0, events, vars);
 	mlx_hook(vars->win, 3, 1L<<1, on_release, vars); 
 	mlx_hook(vars->win, 17, 0, quit, vars);
