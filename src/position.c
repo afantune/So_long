@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:48:03 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 14:37:45 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:20:39 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,29 @@ static int	check_tile_collision(t_vars *vars, int tile_x, int tile_y)
 	if (tile_x < 0 || tile_y < 0 || tile_x >= vars->map->rc[1]
 		|| tile_y >= vars->map->rc[0])
 		return (0);
-	if (vars->map->map[tile_y][tile_x] == 1)
+	return (vars->map->map[tile_y][tile_x] != 1);
+}
+
+static int	check_player_tiles(t_vars *vars, int new_x, int new_y)
+{
+	int	tile_x;
+	int	tile_y;
+	int	right_edge;
+	int	bottom_edge;
+
+	tile_x = new_x / vars->wall->width;
+	tile_y = new_y / vars->wall->height;
+	right_edge = (new_x + vars->player->running->width - 1)
+		/ vars->wall->width;
+	bottom_edge = (new_y + vars->player->running->height - 1)
+		/ vars->wall->height;
+	if (!check_tile_collision(vars, tile_x, tile_y))
+		return (0);
+	if (!check_tile_collision(vars, right_edge, tile_y))
+		return (0);
+	if (!check_tile_collision(vars, tile_x, bottom_edge))
+		return (0);
+	if (!check_tile_collision(vars, right_edge, bottom_edge))
 		return (0);
 	return (1);
 }
@@ -45,10 +67,10 @@ int	can_move(t_player *player, t_vars *vars, int new_x, int new_y)
 	int	tile_y;
 
 	(void)player;
+	if (!check_player_tiles(vars, new_x, new_y))
+		return (0);
 	tile_x = new_x / vars->wall->width;
 	tile_y = new_y / vars->wall->height;
-	if (!check_tile_collision(vars, tile_x, tile_y))
-		return (0);
 	if (vars->map->map[tile_y][tile_x] == C)
 		vars->map->map[tile_y][tile_x] = 0;
 	if (vars->map->map[tile_y][tile_x] == E && vars->exit->exit == 1)
