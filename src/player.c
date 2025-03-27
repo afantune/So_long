@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:47:56 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 13:42:57 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:49:19 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	load_player(t_vars *vars)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
 	vars->player = malloc(sizeof(t_player));
 	if (vars->player == NULL)
 		malloc_errors(vars, NULL, NULL);
 	vars->player->move = 0;
 	vars->player->move_count = 0;
+	i = 0;
 	while (i < vars->map->rc[0])
 	{
+		j = 0;
 		while (j < vars->map->rc[1])
 		{
 			if (vars->map->map[i][j] == P)
@@ -35,7 +35,6 @@ void	load_player(t_vars *vars)
 			}
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	vars->player->idle = NULL;

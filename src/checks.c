@@ -6,44 +6,42 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:08 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 14:31:24 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:49:57 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	game_checks(t_vars *vars)
+static void	count_collectibles(t_vars *vars, int *collectibles)
 {
 	int	i;
 	int	j;
-	int	collectibles;
-	int	player_tile[2];
-	int	exit_tile[2];
 
-	collectibles = 0;
 	i = 0;
 	while (i < vars->map->rc[0])
 	{
 		j = 0;
 		while (j < vars->map->rc[1])
-		{
-			if (vars->map->map[i][j] == C)
-				collectibles++;
-			j++;
-		}
+			if (vars->map->map[i][j++] == C)
+				(*collectibles)++;
 		i++;
 	}
-	if (collectibles == 0)
-		vars->exit->exit = 1;
-	else
-		vars->exit->exit = 0;
-	player_tile[0] = vars->player->x / vars->wall->width;
-	player_tile[1] = vars->player->y / vars->wall->height;
-	exit_tile[0] = vars->exit->x / vars->wall->width;
-	exit_tile[1] = vars->exit->y / vars->wall->height;
-	if (player_tile[0] == exit_tile[0]
-		&& player_tile[1] == exit_tile[1]
-		&& vars->exit->exit == 1)
+}
+
+void	game_checks(t_vars *vars)
+{
+	int	collectibles;
+	int	p_tile[2];
+	int	e_tile[2];
+
+	collectibles = 0;
+	count_collectibles(vars, &collectibles);
+	vars->exit->exit = (collectibles == 0);
+	p_tile[0] = vars->player->x / vars->wall->width;
+	p_tile[1] = vars->player->y / vars->wall->height;
+	e_tile[0] = vars->exit->x / vars->wall->width;
+	e_tile[1] = vars->exit->y / vars->wall->height;
+	if (p_tile[0] == e_tile[0] && p_tile[1] == e_tile[1] && vars->exit->exit)
 	{
 		ft_printf("You Win!\n");
 		quit(vars);
