@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "game.h"
 
 char	*get_texture_path(char *main, int frame, char *ext, char *path)
@@ -49,7 +48,8 @@ void	add_frame_helper(t_vars *vars, char *path, t_animation *sprite)
 	temp = malloc(sizeof(t_animation));
 	if (temp == NULL)
 		malloc_errors(vars, NULL, NULL);
-	temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->width, &temp->height);
+	temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->width,
+			&temp->height);
 	temp->next = NULL;
 	while (sprite->next)
 		sprite = sprite->next;
@@ -59,8 +59,8 @@ void	add_frame_helper(t_vars *vars, char *path, t_animation *sprite)
 void	add_animation_frames(t_vars *vars, char *path, t_animation *sprite)
 {
 	if (!sprite->img)
-		sprite->img = mlx_xpm_file_to_image(vars->mlx, path,
-				&sprite->width, &sprite->height);
+		sprite->img = mlx_xpm_file_to_image(vars->mlx, path, &sprite->width,
+				&sprite->height);
 	else
 		add_frame_helper(vars, path, sprite);
 	free(path);

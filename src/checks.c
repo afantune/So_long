@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:08 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/26 13:20:27 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:31:24 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,37 @@ void	game_checks(t_vars *vars)
 {
 	int	i;
 	int	j;
-	int	c;
+	int	collectibles;
+	int	player_tile[2];
+	int	exit_tile[2];
 
-	c = 0;
+	collectibles = 0;
 	i = 0;
-	j = 0;
 	while (i < vars->map->rc[0])
 	{
+		j = 0;
 		while (j < vars->map->rc[1])
 		{
 			if (vars->map->map[i][j] == C)
-				c++;
+				collectibles++;
 			j++;
 		}
-		j = 0;
 		i++;
 	}
-	if (c == 0)
-	{
+	if (collectibles == 0)
 		vars->exit->exit = 1;
-	}
-	if (vars->player->x == vars->exit->x && vars->player->y == vars->exit->y
+	else
+		vars->exit->exit = 0;
+	player_tile[0] = vars->player->x / vars->wall->width;
+	player_tile[1] = vars->player->y / vars->wall->height;
+	exit_tile[0] = vars->exit->x / vars->wall->width;
+	exit_tile[1] = vars->exit->y / vars->wall->height;
+	if (player_tile[0] == exit_tile[0]
+		&& player_tile[1] == exit_tile[1]
 		&& vars->exit->exit == 1)
 	{
-		printf("You Win!\n");
-		exit(0);
+		ft_printf("You Win!\n");
+		quit(vars);
 	}
 }
 

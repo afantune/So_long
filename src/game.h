@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:09:37 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/26 14:39:55 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:17:47 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@
 # include "../get_next_line/get_next_line.h"
 # include "../printf/ft_printf.h"
 
-# define SPEED 5
+# define SPEED 12
 # define W 119
 # define A 97
 # define S 115
 # define D 100
-# define UP 65362
-# define DOWN 65364
-# define LEFT 65361
-# define RIGHT 65363
 # define ESC 65307
 # define P 32
 # define C 19

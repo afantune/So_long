@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:47:56 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/26 15:28:36 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:42:57 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	load_player(t_vars *vars)
 	vars->player = malloc(sizeof(t_player));
 	if (vars->player == NULL)
 		malloc_errors(vars, NULL, NULL);
+	vars->player->move = 0;
 	vars->player->move_count = 0;
 	while (i < vars->map->rc[0])
 	{
@@ -49,7 +50,8 @@ void	load_idle_animation(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = get_texture_path("./textures/Player/idle_r/idle", i, ".xpm", path);
+		path = get_texture_path("./textures/Player/idle_r/idle", i, ".xpm",
+				path);
 		if (path == NULL)
 		{
 			vars->player->idle_frames = i;

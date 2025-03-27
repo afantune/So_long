@@ -36,7 +36,6 @@ void	main_display(t_vars *vars)
 {
 	wall_set(vars);
 	food_rend(vars);
-	
 }
 
 void	d_anim_helper(t_vars *vars, void *img, int x, int y)

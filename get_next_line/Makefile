@@ -13,7 +13,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = gnl.a
-SRC = get_next_line.c get_next_line_utils.c
+SRC = get_next_line.c get_next_line_utils.c ft_memset.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

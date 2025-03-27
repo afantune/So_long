@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:36 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/25 12:48:25 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:40:14 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 void	free_animation(t_animation *anim, t_vars *vars)
 {
-	if (anim)
-	{
+	if (!anim || !vars || !vars->mlx)
+		return ;
+	if (anim->next)
 		free_animation(anim->next, vars);
+	if (anim->img)
 		mlx_destroy_image(vars->mlx, anim->img);
-		free(anim);
-	}
+	free(anim);
 }
 
 void	free_player(t_player *p, t_vars *vars)
 {
-	if (p)
-	{
+	if (!p)
+		return ;
+	if (p->idle)
 		free_animation(p->idle, vars);
+	if (p->running)
 		free_animation(p->running, vars);
-		free(p);
-	}
+	free(p);
 }
 
 void	free_vars(t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:45 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/26 14:58:56 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:04:29 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	quit(t_vars *vars)
 
 int	events(int keycode, t_vars *vars)
 {
-    if (keycode == ESC)
-        quit(vars);
-    if (keycode == W || keycode == UP)
-        update_pos(W, vars->player, vars);
-    else if (keycode == S || keycode == DOWN)
-        update_pos(S, vars->player, vars);
-    else if (keycode == A || keycode == LEFT)
-        update_pos(A, vars->player, vars);
-    else if (keycode == D || keycode == RIGHT)
-        update_pos(D, vars->player, vars);
-    return (0);
+	if (keycode == ESC)
+		quit(vars);
+	if (keycode == W)
+		update_pos(W, vars->player, vars);
+	else if (keycode == S)
+		update_pos(S, vars->player, vars);
+	else if (keycode == A)
+		update_pos(A, vars->player, vars);
+	else if (keycode == D)
+		update_pos(D, vars->player, vars);
+	return (0);
 }
 
 int	callbacks(t_vars *vars)
@@ -67,25 +67,28 @@ int	start_game(int **map, int *rc)
 {
 	t_vars	*vars;
 
-	vars = NULL;
 	vars = malloc(sizeof(t_vars));
 	if (vars == NULL)
 		malloc_errors(vars, map, rc);
-	vars->end = 0;
-	vars->map = NULL;
+	ft_memset(vars, 0, sizeof(t_vars));
 	vars->map = malloc(sizeof(t_map));
 	if (vars->map == NULL)
 		malloc_errors(vars, map, rc);
+	ft_memset(vars->map, 0, sizeof(t_map));
+	vars->end = 0;
 	vars->map->map = map;
 	vars->map->rc = rc;
 	vars->mlx = mlx_init();
+	if (!vars->mlx)
+		malloc_errors(vars, map, rc);
 	vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "so_long");
-	nullifier(vars);
+	if (!vars->win)
+		malloc_errors(vars, map, rc);
 	mlx_loop_hook(vars->mlx, callbacks, vars);
-	loadplayers(vars);
-	mlx_hook(vars->win, 2, 1L<<0, events, vars);
-	mlx_hook(vars->win, 3, 1L<<1, on_release, vars); 
+	mlx_hook(vars->win, 2, 1L << 0, events, vars);
+	mlx_hook(vars->win, 3, 1L << 1, on_release, vars);
 	mlx_hook(vars->win, 17, 0, quit, vars);
+	loadplayers(vars);
 	mlx_loop(vars->mlx);
 	return (0);
 }
