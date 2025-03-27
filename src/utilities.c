@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:09:15 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/25 12:10:05 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:06:35 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ int	c_check(int c)
 		return (1);
 	else
 		return (0);
+}
+
+int	quit(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	free_vars(vars);
+	exit(1);
 }

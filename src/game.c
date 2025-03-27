@@ -6,18 +6,11 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:45 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 14:04:29 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:08:04 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-
-int	quit(t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-	free_vars(vars);
-	exit(1);
-}
 
 int	events(int keycode, t_vars *vars)
 {
@@ -63,26 +56,39 @@ int	on_release(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	start_game(int **map, int *rc)
+t_vars	*init_game_vars(int **map, int *rc)
 {
 	t_vars	*vars;
 
 	vars = malloc(sizeof(t_vars));
 	if (vars == NULL)
-		malloc_errors(vars, map, rc);
+		return (NULL);
 	ft_memset(vars, 0, sizeof(t_vars));
 	vars->map = malloc(sizeof(t_map));
 	if (vars->map == NULL)
-		malloc_errors(vars, map, rc);
+	{
+		free(vars);
+		return (NULL);
+	}
 	ft_memset(vars->map, 0, sizeof(t_map));
 	vars->end = 0;
 	vars->map->map = map;
 	vars->map->rc = rc;
+	return (vars);
+}
+
+int	start_game(int **map, int *rc)
+{
+	t_vars	*vars;
+
+	vars = init_game_vars(map, rc);
+	if (vars == NULL)
+		malloc_errors(NULL, map, rc);
 	vars->mlx = mlx_init();
-	if (!vars->mlx)
+	if (vars->mlx == NULL)
 		malloc_errors(vars, map, rc);
 	vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "so_long");
-	if (!vars->win)
+	if (vars->win == NULL)
 		malloc_errors(vars, map, rc);
 	mlx_loop_hook(vars->mlx, callbacks, vars);
 	mlx_hook(vars->win, 2, 1L << 0, events, vars);
