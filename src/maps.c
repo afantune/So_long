@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afantune <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:32:26 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:32:27 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:18:52 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	handle_error(int error_code, int fd, char *line, char c)
 {
 	if (error_code == 1)
 	{
-		perror("Invalid Map");
+		printf("Error: Invalid Map \n");
 		exit(1);
 	}
 	if (error_code == 2)
 	{
 		close(fd);
-		printf("Invalid Char found : '%c' \n", c);
+		printf("Error: Invalid Char found -> '%c' \n", c);
 		if (line)
 			free(line);
 		exit(1);
@@ -30,7 +30,7 @@ void	handle_error(int error_code, int fd, char *line, char c)
 	if (error_code == 3)
 	{
 		close(fd);
-		printf("Invalid Map \n");
+		printf("Error: Invalid Map \n");
 		if (line)
 			free(line);
 		exit(1);
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 	map = NULL;
 	if (argc != 2)
 	{
-		printf("Invalid Arguments\n");
+		printf("Error: Invalid Arguments\n");
 		exit(1);
 	}
 	if (validate_map(argv[1], 0) && set_r_c(rc, argv[1]))

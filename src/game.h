@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:09:37 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 15:31:19 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:13:35 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,5 @@ void		load_exit1(t_vars *vars, t_animation *food);
 void		load_player(t_vars *vars);
 void		load_player_animations(t_vars *vars);
 void		load_food(t_vars *vars, t_animation *food);
-void		process_image_transparency(void *mlx, void *img_ptr);
 
 #endif

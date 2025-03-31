@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:08 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 14:49:57 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:12:31 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	path_checker(char *path, int **map, int *pos, int *rc)
 	validate_path(temp, pos[0], pos[1], err);
 	if (err[0] != 1)
 	{
-		printf("No Valid Path\n");
+		printf("Error: No Valid Path\n");
 		free_map_struct(temp);
 		exit(1);
 	}

@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:10:12 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/26 13:21:31 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:15:37 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	check_map(int **map, int row, int col)
 	{
 		printf("Error: ");
 		if (err->w == -1)
-			printf("The map is not surrounded by walls.\n");
+			printf("The Map Is Not Surrounded By Walls.\n");
 		else if (err->c == 0)
-			printf("The map needs at least one collectible.\n");
+			printf("The Map Needs At Least One Collectible.\n");
 		else if (err->e != 1)
-			printf("The map requires exactly one exit.\n");
+			printf("The Map Requires Exactly One Exit.\n");
 		else if (err->p != 1)
-			printf("The map requires exactly one player.\n");
+			printf("The Map Requires Exactly One Player.\n");
 		free(err);
 		return (0);
 	}
@@ -97,7 +97,7 @@ int	*fill_row(int fd, int n)
 	row = malloc(sizeof(int) * n);
 	if (!row)
 	{
-		perror("Error allocating memory for row");
+		perror("Error Allocating Memory For Row. \n");
 		return (NULL);
 	}
 	temp = get_next_line(fd);
@@ -126,7 +126,7 @@ int	**map_create(int *rc, int **map, char *path)
 	map = malloc(sizeof(int *) * rc[0]);
 	if (!map)
 	{
-		perror("Error allocating memory for map");
+		perror("Error Allocating Memory For Map. \n");
 		return (NULL);
 	}
 	while (i < rc[0])

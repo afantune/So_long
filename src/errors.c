@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afantune <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:28 by afantune          #+#    #+#             */
-/*   Updated: 2025/02/17 13:08:30 by afantune         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:13:12 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_map_errors(int *rc, int **map)
 {
 	if (rc[1] == rc[0])
 	{
-		printf("Map should be rectangle !\n");
+		printf("Error: Map Should Be Rectangle!\n");
 		free_map(map, rc[0]);
 		exit(1);
 	}
@@ -29,7 +29,7 @@ void	check_map_errors(int *rc, int **map)
 
 void	malloc_errors(t_vars *vars, int **map, int *rc)
 {
-	printf("Not enough memory to Malloc\n");
+	printf("Error: Not Enough Memory To Malloc\n");
 	if (map)
 		free_map(map, rc[0]);
 	free_vars(vars);
