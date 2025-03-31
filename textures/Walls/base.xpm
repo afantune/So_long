@@ -2,12 +2,12 @@
 static char *base[] = {
 /* columns rows colors chars-per-pixel */
 "75 75 6 1 ",
-"  c #252941",
-". c #3E455D",
-"X c #181425",
-"o c #5A6177",
-"O c #202136",
-"+ c #2C2F4A",
+"  c #6FC500",
+". c #6FC500",
+"X c #6FC500",
+"o c #6FC500",
+"O c #6FC500",
+"+ c #6FC500",
 /* pixels */
 "     .........XXXXXXXXX........................oooooXXXXXXXXXOOOOOOOOOOOOOO",
 "     .........XXXXXXXXX........................oooooXXXXXXXXXOOOOOOOOOOOOOO",
