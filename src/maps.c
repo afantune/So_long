@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:32:26 by afantune          #+#    #+#             */
-/*   Updated: 2025/04/08 14:02:13 by afantune         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:14:25 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	handle_error(int error_code, int fd, char *line, char c)
 	if (error_code == 2)
 	{
 		close(fd);
-		printf("Error: Invalid Char found -> '%c' \n", c);
+		if (!c_check(c))
+			printf("Error: Invalid Char found -> '%c' \n", c);
+		else
+			printf("Error: Map Should Be Rectangle!\n");
 		if (line)
 			free(line);
 		exit(1);
@@ -77,7 +80,7 @@ int	validate_map(char *path, int index)
 		index = 0;
 		while (c_check(line[index]) && index != len)
 			index++;
-		if (line[index] != '\0')
+		if (line[index] != '\0' || index != len)
 			handle_error(2, fd, line, line[index]);
 		free(line);
 		line = get_next_line(fd);
@@ -88,24 +91,24 @@ int	validate_map(char *path, int index)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	int	rc[2];
 	int	**map;
 	int	start_pos[2];
 
 	map = NULL;
-	if (argc != 2)
+	if (ac != 2 || ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4))
 	{
 		printf("Error: Invalid Arguments\n");
 		exit(1);
 	}
-	if (validate_map(argv[1], 0) && set_r_c(rc, argv[1]))
-		map = map_create(rc, map, argv[1]);
+	if (validate_map(av[1], 0) && set_r_c(rc, av[1]))
+		map = map_create(rc, map, av[1]);
 	start_pos[0] = 0;
 	start_pos[1] = 0;
 	check_map_errors(rc, map);
-	check_path(map, argv[1], start_pos, rc);
+	check_path(map, av[1], start_pos, rc);
 	start_game(map, rc);
 	return (0);
 }
