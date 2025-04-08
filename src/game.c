@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:45 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/31 13:29:33 by afantune         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:05:39 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_vars	*init_game_vars(int **map, int *rc)
 
 int	start_game(int **map, int *rc)
 {
-	t_vars	*vars;
+	static t_vars	*vars;
 
 	vars = init_game_vars(map, rc);
 	if (vars == NULL)
@@ -96,5 +96,6 @@ int	start_game(int **map, int *rc)
 	mlx_hook(vars->win, 17, 0, quit, vars);
 	loadplayers(vars);
 	mlx_loop(vars->mlx);
+	quit(vars);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: afantune <afantune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:08:36 by afantune          #+#    #+#             */
-/*   Updated: 2025/03/27 13:40:14 by afantune         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:13:32 by afantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	free_vars(t_vars *vars)
 		free_map_struct(vars->map);
 		free_animation(vars->food, vars);
 		free_animation(vars->base, vars);
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
 		free(vars);
 	}
 }
